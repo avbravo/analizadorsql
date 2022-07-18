@@ -21,10 +21,24 @@ public class Analizadorsql {
         String one="idoceano = @idocenao";
         List<String> list = Arrays.asList("idoceano = @idoceano",
                 "idoceano = @idoceano and oceano = @oceano",
-                "idoceano = @idoceano and oceano = 'pacifico'");
+                "idoceano = @idoceano and oceano = 'pacifico'",
+                "idoceano @idoceano",
+                "oceano = @oceano)"
+        );
         
         for(String s: list){
-            System.out.println("Analizando "+ s + " Valid "+sQLAnalizer.validSQL(s));
+            System.out.println("===========================================================================");
+            System.out.println("Analizando "+ s );
+            
+            List<String> tokenResult =sQLAnalizer.getTokensWithCollection(s, " ");
+            for (String tokens: tokenResult){
+                System.out.println("Token "+tokens);
+            }
+            Summary summary = sQLAnalizer.count(s, tokenResult);
+            System.out.println("[------------------ Summary ---------------------------- ]");
+            System.out.println(""+summary.toString());
+            
+            System.out.println("_____________________________________________________________________");
         }
         
     }
