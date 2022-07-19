@@ -87,7 +87,7 @@ public class SQLAnalizer {
     
     public List<String> getFields(List<String> tokens) {
    List<String> result = tokens.stream()                // convert list to stream
-                .filter(line -> line.indexOf('@')!= -1 && line.charAt(0).)     // we dont like mkyong
+                .filter(line -> line.indexOf('@')!= -1 && Character.isAlphabetic(line.charAt(0)))     // we dont like mkyong
                 .collect(Collectors.toList());      
    return result;
     }
